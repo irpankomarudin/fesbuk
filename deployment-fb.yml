@@ -68,5 +68,5 @@ spec:
       paths:
       #- path: /
       - backend:
-          serviceName: pesbuk-service
+          serviceName: spesbuk-service
           servicePort: 80
