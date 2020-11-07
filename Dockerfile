@@ -1,5 +1,6 @@
-from rizaleko/nginx-php-fpm
+from php:7.2-apache
+run docker-php-ext-install pdo pdo_mysql
 
-workdir /usr/share/nginx/html
+workdir /var/www/html
 
 copy . .
