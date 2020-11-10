@@ -10,12 +10,12 @@ pipeline {
             }
         stage('docker build') {
             steps {
-                sh "docker build --build-arg APP_NAME=$DOCKER_IMAGE_NAME -t $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:$BUILD_NUMBER ."
+                sh "docker build --build-arg APP_NAME=$DOCKER_IMAGE_NAME -t $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME ."
                 }
            }
         stage('Docker push') {
             steps {                
-                sh "docker push $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:$BUILD_NUMBER"
+                sh "docker push $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME"
                 }
            }
         stage('tagging') {
@@ -35,12 +35,17 @@ pipeline {
            }
         stage('deploy') {
             steps {
+                sh('kubectl delete -f deployment-fb.yml')
+                }
+           }
+        stage('deploy') {
+            steps {
                 sh('kubectl apply -f deployment-fb.yml')
                 }
            }
         stage('remove image docker') {
             steps {
-                sh "docker rmi $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME:$BUILD_NUMBER"
+                sh "docker rmi $DOCKER_REGISTRY/$DOCKER_IMAGE_NAME"
                 }
            }
          stage('show ingress') {
