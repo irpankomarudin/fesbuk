@@ -25,12 +25,12 @@ pipeline {
            }
         stage('locate namespace') {
             steps {
-              sh('sed -i "s/default/staging" deployment-fb.yml')
+              sh('sed -i "s/default/production" deployment-fb.yml')
                 }
            }
         stage('add domain') {
             steps {
-                sh('sed -i "s/pesbuk.ridjal.com/spesbuk.ridjal.com/g" deployment-fb.yml')
+                sh('sed -i "s/pesbuk.ridjal.com/pesbuk.ridjal.com/g" deployment-fb.yml')
                 }
            }
         stage('deploy') {
