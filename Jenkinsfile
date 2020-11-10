@@ -25,7 +25,7 @@ pipeline {
            }
         stage('locate namespace') {
             steps {
-              sh('sed -i "s/default/production" deployment-fb.yml')
+              sh('sed -i "s/default/production/g" deployment-fb.yml')
                 }
            }
         stage('add domain') {
