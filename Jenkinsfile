@@ -33,7 +33,7 @@ pipeline {
                 sh('sed -i "s/pesbuk.ridjal.com/spesbuk.ridjal.com/g" deployment-fb.yml')
                 }
            }
-        stage('deploy') {
+        stage('deplo') {
             steps {
                 sh('kubectl delete -f deployment-fb.yml')
                 }
