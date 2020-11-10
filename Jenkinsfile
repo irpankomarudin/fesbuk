@@ -5,7 +5,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh('sed -i "s/tag/$BUILD_NUMBER/g" index.html')
+                sh('sed -i "s/tag/$BUILD_NUMBER/g" index.php')
                 }
             }
         stage('docker build') {
@@ -50,7 +50,7 @@ pipeline {
            }
          stage('show ingress') {
             steps {
-                sh('kubectl get ingress')
+                sh('kubectl get ingress -n=staging')
                 }
            }        
       }
