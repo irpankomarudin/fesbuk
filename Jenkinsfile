@@ -1,5 +1,5 @@
-env.DOCKER_REGISTRY = 'rizaleko'
-env.DOCKER_IMAGE_NAME = 'pesbuk'
+env.DOCKER_REGISTRY = 'irpank'
+env.DOCKER_IMAGE_NAME = 'pesbuk-app'
 pipeline {
     agent any
     stages {
