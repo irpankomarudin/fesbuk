@@ -1,11 +1,11 @@
 env.DOCKER_REGISTRY = 'rizaleko'
-env.DOCKER_IMAGE_NAME = 'landing'
+env.DOCKER_IMAGE_NAME = 'pesbuk'
 pipeline {
     agent any
     stages {
         stage('build') {
             steps {
-                sh('sed -i "s/tag/$BUILD_NUMBER/g" index.html')
+                sh('sed -i "s/tag/$BUILD_NUMBER/g" index.php')
                 }
             }
         stage('docker build') {
@@ -20,22 +20,27 @@ pipeline {
            }
         stage('tagging') {
             steps {
-                sh('sed -i "s/tag/$BUILD_NUMBER/g" landing.yml')
+                sh('sed -i "s/tag/$BUILD_NUMBER/g" deployment-fb.yml')
                 }
            }
         stage('locate namespace') {
             steps {
-                sh('sed -i "s/default/production/g" landing.yml')
+              sh('sed -i "s/default/staging/g" deployment-fb.yml')
                 }
            }
         stage('add domain') {
             steps {
-                sh('sed -i "s/landing.ridjal.com/landing.ridjal.com/g" landing.yml')
+                sh('sed -i "s/pesbuk.ridjal.com/spesbuk.ridjal.com/g" deployment-fb.yml')
                 }
            }
+        //stage('deplo') {
+            //steps {
+                //sh('kubectl delete -f deployment-fb.yml')
+                //}
+           //}
         stage('deploy') {
             steps {
-                sh('kubectl apply -f landing.yml')
+                sh('kubectl apply -f deployment-fb.yml')
                 }
            }
         stage('remove image docker') {
@@ -45,7 +50,7 @@ pipeline {
            }
          stage('show ingress') {
             steps {
-                sh('kubectl get ingress -n=production')
+                sh('kubectl get ingress -n=staging')
                 }
            }        
       }
