@@ -30,7 +30,7 @@ pipeline {
            }
         stage('add domain') {
             steps {
-                sh('sed -i "s/pesbuk.ridjal.com/pesbuk.ridjal.com/g" deployment-fb.yml')
+                sh('sed -i "s/pesbuk.ridjal.com/pesbuk2.komarudins.online/g" deployment-fb.yml')
                 }
            }
         stage('deploy') {
