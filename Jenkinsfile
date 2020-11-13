@@ -25,12 +25,12 @@ pipeline {
            }
         stage('locate namespace') {
             steps {
-                sh('sed -i "s/default/staging/g" landing.yml')
+                sh('sed -i "s/default/production/g" landing.yml')
                 }
            }
         stage('add domain') {
             steps {
-                sh('sed -i "s/landing.ridjal.com/slanding.ridjal.com/g" landing.yml')
+                sh('sed -i "s/landing.ridjal.com/landing.ridjal.com/g" landing.yml')
                 }
            }
         stage('deploy') {
@@ -45,7 +45,7 @@ pipeline {
            }
          stage('show ingress') {
             steps {
-                sh('kubectl get ingress -n=staging')
+                sh('kubectl get ingress -n=production')
                 }
            }        
       }
