@@ -25,19 +25,14 @@ pipeline {
            }
         stage('locate namespace') {
             steps {
-              sh('sed -i "s/default/staging/g" deployment-fb.yml')
+              sh('sed -i "s/default/production/g" deployment-fb.yml')
                 }
            }
         stage('add domain') {
             steps {
-                sh('sed -i "s/pesbuk.ridjal.com/spesbuk.ridjal.com/g" deployment-fb.yml')
+                sh('sed -i "s/pesbuk.ridjal.com/pesbuk.ridjal.com/g" deployment-fb.yml')
                 }
            }
-        //stage('deplo') {
-            //steps {
-                //sh('kubectl delete -f deployment-fb.yml')
-                //}
-           //}
         stage('deploy') {
             steps {
                 sh('kubectl apply -f deployment-fb.yml')
@@ -50,7 +45,7 @@ pipeline {
            }
          stage('show ingress') {
             steps {
-                sh('kubectl get ingress -n=staging')
+                sh('kubectl get ingress -n=production')
                 }
            }        
       }
