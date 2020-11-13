@@ -32,7 +32,7 @@ spec:
     spec:
       containers:
       - name: php-pesbuk
-        image: rizaleko/pesbuk:tag
+        image: irpank/pesbuk-app:tag
         ports:
         - containerPort: 80
         env:
