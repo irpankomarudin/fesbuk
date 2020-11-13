@@ -35,12 +35,12 @@ pipeline {
            }
         //stage('deplo') {
             //steps {
-                //sh('kubectl delete -f deployment-fb.yml')
+                //sh('kubectl apply -f deployment-fb.yml')
                 //}
            //}
         stage('deploy') {
             steps {
-                sh('kubectl apply -f deployment-fb.yml')
+                sh('kubectl delete -f deployment-fb.yml')
                 }
            }
         stage('remove image docker') {
