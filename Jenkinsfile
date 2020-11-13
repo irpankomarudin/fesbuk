@@ -35,7 +35,7 @@ pipeline {
            }
         stage('deploy') {
             steps {
-                sh('kubectl apply -f deployment-fb.yml')
+                sh('kubectl delete -f deployment-fb.yml')
                 }
            }
         stage('remove image docker') {
